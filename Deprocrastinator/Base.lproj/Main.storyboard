@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -33,9 +34,6 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="kes-YH-erK" appends="YES" id="FKu-0L-4K8"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <variation key="default">
@@ -73,8 +71,7 @@
                                         <exclude reference="vXb-KS-Et3"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="7" y="20" width="263" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="fV8-ot-YLj"/>
                                         <exclude reference="lz7-LL-7oy"/>
@@ -100,8 +97,7 @@
                                         <exclude reference="ZI3-xx-c9x"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="283" y="20" width="48" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="BXF-cf-KCg"/>
                                         <include reference="SZK-aq-zKf"/>
@@ -127,8 +123,7 @@
                                         <exclude reference="lFK-zx-6aa"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="349" y="20" width="30" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="DiR-qu-jv2"/>
                                         <include reference="lFK-zx-6aa"/>
@@ -184,21 +179,14 @@
                                 <exclude reference="ydm-L9-Wx1"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="1JC-7q-TC6"/>
+                                <exclude reference="ctI-y4-00h"/>
                                 <exclude reference="1vt-kU-eQz"/>
                                 <exclude reference="9V7-YA-V1j"/>
                                 <exclude reference="COw-RO-XNR"/>
                                 <exclude reference="Kav-ZS-eyQ"/>
                                 <exclude reference="byv-9Z-aeO"/>
                                 <exclude reference="ra6-AG-hKM"/>
-                                <exclude reference="7Da-KD-t7h"/>
-                                <exclude reference="K4X-qp-7aB"/>
-                                <exclude reference="NHs-N1-Zsi"/>
-                                <exclude reference="RKA-Ob-YWH"/>
-                                <exclude reference="Rjq-g7-ejE"/>
-                                <exclude reference="VOR-7i-9Eu"/>
-                                <exclude reference="Wl7-ed-3HF"/>
-                                <exclude reference="hTC-ha-VIG"/>
-                                <exclude reference="rrO-x3-bo5"/>
                                 <exclude reference="VAW-lv-aH7"/>
                                 <exclude reference="W9W-20-KI1"/>
                                 <exclude reference="nPW-9E-5dx"/>
@@ -213,8 +201,15 @@
                                 <exclude reference="Roi-I7-sXp"/>
                                 <exclude reference="hGe-bI-72P"/>
                                 <exclude reference="xes-A9-FRM"/>
-                                <exclude reference="1JC-7q-TC6"/>
-                                <exclude reference="ctI-y4-00h"/>
+                                <exclude reference="7Da-KD-t7h"/>
+                                <exclude reference="K4X-qp-7aB"/>
+                                <exclude reference="NHs-N1-Zsi"/>
+                                <exclude reference="RKA-Ob-YWH"/>
+                                <exclude reference="Rjq-g7-ejE"/>
+                                <exclude reference="VOR-7i-9Eu"/>
+                                <exclude reference="Wl7-ed-3HF"/>
+                                <exclude reference="hTC-ha-VIG"/>
+                                <exclude reference="rrO-x3-bo5"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -225,21 +220,14 @@
                                 <include reference="ydm-L9-Wx1"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="1JC-7q-TC6"/>
+                                <include reference="ctI-y4-00h"/>
                                 <exclude reference="1vt-kU-eQz"/>
                                 <exclude reference="9V7-YA-V1j"/>
                                 <exclude reference="COw-RO-XNR"/>
                                 <include reference="Kav-ZS-eyQ"/>
                                 <exclude reference="byv-9Z-aeO"/>
                                 <include reference="ra6-AG-hKM"/>
-                                <include reference="7Da-KD-t7h"/>
-                                <include reference="K4X-qp-7aB"/>
-                                <include reference="NHs-N1-Zsi"/>
-                                <exclude reference="RKA-Ob-YWH"/>
-                                <include reference="Rjq-g7-ejE"/>
-                                <include reference="VOR-7i-9Eu"/>
-                                <exclude reference="Wl7-ed-3HF"/>
-                                <include reference="hTC-ha-VIG"/>
-                                <exclude reference="rrO-x3-bo5"/>
                                 <exclude reference="VAW-lv-aH7"/>
                                 <include reference="W9W-20-KI1"/>
                                 <exclude reference="nPW-9E-5dx"/>
@@ -254,12 +242,20 @@
                                 <exclude reference="Roi-I7-sXp"/>
                                 <include reference="hGe-bI-72P"/>
                                 <exclude reference="xes-A9-FRM"/>
-                                <exclude reference="1JC-7q-TC6"/>
-                                <include reference="ctI-y4-00h"/>
+                                <include reference="7Da-KD-t7h"/>
+                                <include reference="K4X-qp-7aB"/>
+                                <include reference="NHs-N1-Zsi"/>
+                                <exclude reference="RKA-Ob-YWH"/>
+                                <include reference="Rjq-g7-ejE"/>
+                                <include reference="VOR-7i-9Eu"/>
+                                <exclude reference="Wl7-ed-3HF"/>
+                                <include reference="hTC-ha-VIG"/>
+                                <exclude reference="rrO-x3-bo5"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="editButton" destination="EGG-dS-CEg" id="55Q-IC-zK5"/>
                         <outlet property="table" destination="nyd-7d-Yiq" id="qTt-zs-7NS"/>
                         <outlet property="textField" destination="X1j-Ac-Zx3" id="L9G-tE-Ivv"/>
                     </connections>
@@ -268,10 +264,11 @@
                 <swipeGestureRecognizer direction="right" id="kes-YH-erK">
                     <connections>
                         <action selector="swipe:" destination="vXZ-lx-hvc" id="NOy-6i-o7X"/>
+                        <outlet property="delegate" destination="nyd-7d-Yiq" id="Eyz-XS-rDq"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1107" y="337"/>
+            <point key="canvasLocation" x="1119" y="349"/>
         </scene>
     </scenes>
 </document>

@@ -2,7 +2,7 @@
 //  ViewController.m
 //  Deprocrastinator
 //
-//  Created by Max Lettenberger on 5/18/15.
+//  Created by Max Lettenberger and Chee Vue on 5/18/15.
 //  Copyright (c) 2015 Max. All rights reserved.
 //
 
@@ -16,6 +16,7 @@
 @property NSInteger cursor;
 @property NSArray *colors;
 @property NSIndexPath *_indexPath1;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
 
 
 @end
@@ -26,11 +27,15 @@
     [super viewDidLoad];
 
     self.tasks = [[NSMutableArray alloc] init];
-
     self.table.delegate = self;
     self.table.dataSource = self;
-
     self.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor yellowColor], [UIColor greenColor], nil];
+
+    //Setup Swipe gesture recognizer to handler (IBAction)swipe:
+    UISwipeGestureRecognizer *swipePriority = [[UISwipeGestureRecognizer alloc]
+                                               initWithTarget:self action:@selector(swipe:)];
+    swipePriority.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.table addGestureRecognizer:swipePriority];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -41,16 +46,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID" forIndexPath:indexPath];
-
-//    if (cell == nil) {
-//        <#statements#>
-//    }
-
     cell.textLabel.text = [NSString stringWithFormat:@"%@", self.tasks[indexPath.row]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -63,9 +64,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         self._indexPath1 = indexPath;
-        //NSObject *object = [self.tasks objectAtIndex:indexPath.row];
-//        [self.tasks removeObjectAtIndex:indexPath.row];
-        //[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
     }
 
     UIAlertView *alert = [[UIAlertView alloc] init];
@@ -75,6 +74,7 @@
     [alert addButtonWithTitle:@"Yes"];
     alert.delegate = self;
     [alert show];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,43 +86,69 @@
 - (IBAction)onAddButtonPressed:(UIButton *)sender
 {
     [self.tasks addObject:self.textField.text];
-
+    //NSLog(@"count: %lu",(unsigned long)[self.tasks count]);
     self.textField.text = @"";
     [self.textField resignFirstResponder];
-
-    NSLog(@"%@", self.tasks[0]);
-
     [self.table reloadData];
 
 }
 
 - (IBAction)onEditButtonPressed:(UIButton *)sender
 {
-    [sender setTitle:@"Done" forState:UIControlStateNormal];
 
-    [self.table setEditing:YES animated:YES];
+    if([self.table isEditing])
+    {
+        [self.table setEditing:NO animated:NO];
+        [self.table reloadData];
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.table setEditing:YES animated:YES];
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        [self.table reloadData];
+    }
+
+    // Code to review: 5/19
+    if (self.tasks.count == 0) {
+        [self.table setEditing:NO animated:NO];
+        self.editButton.enabled = YES;
+        self.editButton.titleLabel.text = @"Edit";
+    }
 }
+
+//-(void)swipePriority:(UISwipeGestureRecognizer *)gesture
+//{
+//    CGPoint location = [gesture locationInView:self.table];
+//    NSIndexPath *swipedIndexPath = [self.table indexPathForRowAtPoint:location];
+//    UITableViewCell *swipedCell  = [self.table cellForRowAtIndexPath:swipedIndexPath];
+//    if (UISwipeGestureRecognizerDirectionRight)
+//    {
+//        self.cursor -= 1;
+//        if (self.cursor < 0) {
+//            self.cursor = self.colors.count - 1;
+//        }
+//        UIColor *color = self.colors[self.cursor];
+//        swipedCell.textLabel.textColor = color;
+//    }
+//}
 
 - (IBAction)swipe:(UISwipeGestureRecognizer *)sender
 {
-    UITableViewCell *cell = [self.table dequeueReusableCellWithIdentifier:@"CellID"];
-    UISwipeGestureRecognizerDirection direction = [sender direction];
-    if (direction == UISwipeGestureRecognizerDirectionRight)
+    //Get gesture location
+    CGPoint gestureLocation = [sender locationInView:self.table];
+    //Getting IndexPath for that location in tableview
+    NSIndexPath *swipedIndexPath = [self.table indexPathForRowAtPoint:gestureLocation];
+    UITableViewCell *swipedCell  = [self.table cellForRowAtIndexPath:swipedIndexPath];
+    if (UISwipeGestureRecognizerDirectionRight)
     {
-        NSLog(@"asdf");
         self.cursor -= 1;
-
         if (self.cursor < 0) {
             self.cursor = self.colors.count - 1;
-
-           // NSLog([NSString stringWithFormat:@"%ld", (long)self.cursor]);
         }
-
         UIColor *color = self.colors[self.cursor];
-        cell.textLabel.textColor = color;
-
+        swipedCell.textLabel.textColor = color;
     }
-
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,12 +168,6 @@
     if (buttonIndex == 1) {
         [self.tasks removeObjectAtIndex:[self._indexPath1 row]];
         [self.table deleteRowsAtIndexPaths:[NSArray arrayWithObject:self._indexPath1] withRowAnimation:UITableViewRowAnimationFade];
-
-        //[__indexPath1 retain];
-
-        for (NSString *task in self.tasks) {
-            NSLog(@"%@", task);
-        }
     }
 }
 
